@@ -26,18 +26,21 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         move = Input.GetAxisRaw("Horizontal") * moveSpeed;
-
+        /*
         if (Input.GetKey(KeyCode.Space) && currentStamina > 0)
         {
             move = move * jumpMulti;
             if (move != 0)
                 currentStamina -= 2 * Time.deltaTime;
         }
+        */
+        /*
         else if (!Input.GetKey(KeyCode.Space) && currentStamina < maxStamina)
         {
             currentStamina += 1 * Time.deltaTime;
         }
-        if (Input.GetButtonDown("Jump") && isOnGrounded)
+        */
+        if (Input.GetKey(KeyCode.Space) && isOnGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
         }
