@@ -9,11 +9,8 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     bool isOnGrounded;
 
-    [SerializeField, Range(0, 30)] float moveSpeed = 10;
+    [SerializeField, Range(0, 30)] float moveSpeed = 5;
     [SerializeField, Range(0, 30)] float jumpSpeed = 5;
-    [SerializeField, Range(1, 4)] float jumpMulti = 2;
-    [SerializeField, Range(0, 30)] float maxStamina = 10;
-    [SerializeField] float currentStamina = 10;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +22,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        move = Input.GetAxisRaw("Horizontal") * moveSpeed;
+        move = moveSpeed;
         /*
         if (Input.GetKey(KeyCode.Space) && currentStamina > 0)
         {
@@ -40,9 +37,16 @@ public class PlayerController : MonoBehaviour
             currentStamina += 1 * Time.deltaTime;
         }
         */
-        if (Input.GetKey(KeyCode.Space) && isOnGrounded)
+        /*
+        if (Input.GetKeyCode(Space) && isOnGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+        }
+        */
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGrounded)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            Debug.Log("Jump!");
         }
     }
     private void FixedUpdate()

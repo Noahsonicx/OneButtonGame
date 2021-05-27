@@ -19,7 +19,7 @@ public class PlatformScript : MonoBehaviour
     {
         float y = Random.Range(yMin, yMax);
 
-        Vector3 pos = new Vector3(transform.position.x, y, 0);
+        Vector3 pos = new Vector3(transform.position.x + 10, y, 0);
         Instantiate(Platform, pos, transform.rotation);
     }
 }
