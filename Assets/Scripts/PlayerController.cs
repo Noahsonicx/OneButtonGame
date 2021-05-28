@@ -7,9 +7,10 @@ public class PlayerController : MonoBehaviour
 {
     public float move;
     public Rigidbody2D rb;
-    bool isOnGrounded;
+    bool isOnGrounded = false;
+    public Transform Platform;
 
-    [SerializeField, Range(0, 30)] float moveSpeed = 5;
+    [SerializeField, Range(0, 30)] float moveSpeed = 0.5f;
     [SerializeField, Range(0, 30)] float jumpSpeed = 5;
 
     // Start is called before the first frame update
@@ -48,15 +49,18 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
             Debug.Log("Jump!");
         }
+
+        isOnGrounded = Physics2D.OverlapCircle(Platform.position, 0.15f);
     }
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(move, rb.velocity.y);
     }
 
+    /*
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Platform")
         {
             isOnGrounded = true;
         }
@@ -66,4 +70,5 @@ public class PlayerController : MonoBehaviour
     {
         isOnGrounded = false;
     }
+    */
 }
