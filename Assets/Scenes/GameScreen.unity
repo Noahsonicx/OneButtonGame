@@ -747,6 +747,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5832569592819831158, guid: 0353759c1a2b1ba438f5ecefece2facc, type: 3}
   m_PrefabInstance: {fileID: 2119371392}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &479278999 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6936750797879066179, guid: 0353759c1a2b1ba438f5ecefece2facc, type: 3}
+  m_PrefabInstance: {fileID: 2119371392}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &613423434
 GameObject:
   m_ObjectHideFlags: 0
@@ -1145,7 +1150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move: 0
   rb: {fileID: 1153011177}
-  Platform: {fileID: 0}
+  Platform: {fileID: 479278999}
   moveSpeed: 5.7
   jumpSpeed: 5
 --- !u!50 &1153011177
