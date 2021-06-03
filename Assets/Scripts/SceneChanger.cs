@@ -7,6 +7,10 @@ public class SceneChanger : MonoBehaviour
 {
     public void MainMenu()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("MainMenu");
+    }
+    public void GameScreen()
+    {
+        SceneManager.LoadScene("GameScreen");
     }
 }
