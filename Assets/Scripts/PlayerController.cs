@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     bool isOnGrounded = false;
     public Transform Platform;
+    public LoseManager loseManager;
 
     [SerializeField, Range(0, 30)] float moveSpeed = 0.5f;
     [SerializeField, Range(0, 30)] float jumpSpeed = 5;
@@ -57,6 +58,13 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(move, rb.velocity.y);
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "KillArea")
+        {
+            loseManager.RestartGame();
+        }   
+    }
     /*
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -71,4 +79,5 @@ public class PlayerController : MonoBehaviour
         isOnGrounded = false;
     }
     */
+
 }
