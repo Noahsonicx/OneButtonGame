@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChanger : MonoBehaviour
 {
+    // Scene Changer to link the buttons from the canvas panel to the next scene 
     public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");

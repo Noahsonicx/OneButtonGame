@@ -7,17 +7,26 @@ public class PlayerController : MonoBehaviour
 {
     public float move;
     public Rigidbody2D rb;
-    bool isOnGrounded = false;
+    public bool isOnGrounded; 
+    //bool isOnGrounded = false;
     public Transform Platform;
     public LoseManager loseManager;
+    public LayerMask whatIsGround;
+    public Transform groundCheck;
+    public float groundCheckRadius;
 
     [SerializeField, Range(0, 30)] float moveSpeed = 0.5f;
     [SerializeField, Range(0, 30)] float jumpSpeed = 5;
 
+    private Collider2D Collider;
+    
+
     // Start is called before the first frame update
     void Start()
     {
+        // Rigidbody for the player and the collider mainly for the platforms so they don't go through each other.
         rb = GetComponent<Rigidbody2D>();
+        Collider = GetComponent<Collider2D>();
     }
 
 
@@ -25,6 +34,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         move = moveSpeed;
+        #region Code i didn't use
         /*
         if (Input.GetKey(KeyCode.Space) && currentStamina > 0)
         {
@@ -45,26 +55,44 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
         }
         */
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGrounded)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-            Debug.Log("Jump!");
-        }
+        #endregion
+        // grounded position of the player landing on the platform
+        isOnGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
 
-        isOnGrounded = Physics2D.OverlapCircle(Platform.position, 0.15f);
+        // Jump Key
+        if (Input.GetKeyDown(KeyCode.Space)) //&& isOnGrounded)
+        {
+            // if(isOnGrounded)
+            //{
+            // // Rigidbody velocity to determine the speed of the jump of the player
+            // rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            // Debug.Log("Jump!");
+            //}
+
+
+            // Rigidbody velocity to determine the speed of the jump of the player
+            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+           Debug.Log("Jump!");
+            
+        }
+        
+        
     }
     private void FixedUpdate()
     {
+        // determining the velocity for the players move speed
         rb.velocity = new Vector2(move, rb.velocity.y);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        // tag for the lose function
         if(other.gameObject.tag == "KillArea")
         {
             loseManager.RestartGame();
         }   
     }
+    #region Code i also again didn't use
     /*
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -79,5 +107,6 @@ public class PlayerController : MonoBehaviour
         isOnGrounded = false;
     }
     */
+    #endregion
 
 }

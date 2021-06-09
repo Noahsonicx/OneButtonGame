@@ -13,6 +13,7 @@ public class LoseManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Statposition of the player
         platformStartPoint = platformController.position;
         playerStartPoint = player.transform.position;
     }
@@ -25,11 +26,13 @@ public class LoseManager : MonoBehaviour
 
     public void RestartGame()
     {
+        // Coroutine to start the restart function
         StartCoroutine("Restart");
     }
 
     public IEnumerator Restart()
     {
+        // Seconds between the time when they restart
         player.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         player.transform.position = playerStartPoint;
