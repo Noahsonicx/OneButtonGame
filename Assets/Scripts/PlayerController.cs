@@ -72,7 +72,9 @@ public class PlayerController : MonoBehaviour
 
             // Rigidbody velocity to determine the speed of the jump of the player
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
-           Debug.Log("Jump!");
+
+            // Debug.log to check if the jump is working correctly :)
+           //Debug.Log("Jump!");
             
         }
         
@@ -87,7 +89,7 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         // tag for the lose function
-        if(other.gameObject.tag == "KillArea")
+        if(other.gameObject.tag == "Killbox")
         {
             loseManager.RestartGame();
         }   
